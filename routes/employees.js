@@ -14,6 +14,12 @@ const employeesRouter = (app, client) => {
     res.json(response.rows);
   });
 
+  app.get("/offices", async (req, res) => {
+    const response = await client.query("SELECT * FROM offices");
+
+    res.json(response.rows);
+  });
+
   app.post("/create/employee", async (req, res) => {
     const response = await client.query(
       "INSERT INTO employees (name, date, email, phone, office, status, salary) VALUES ($1, $2, $3, $4, $5, $6, $7)",
